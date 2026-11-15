@@ -1,4 +1,4 @@
-name: Next JS Build With Caching & Artifact
+name: Next Js Build With Caching & Artifact
 
 on:
  push:
