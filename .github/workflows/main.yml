@@ -28,14 +28,7 @@ jobs:
        uses: actions/upload-artifact@v7.0.2
        with:
         name: build-next Js
-        path: opt/
-       
-
-       
-        
-        
-        
-       
+        path: opt/    
 
        
    
