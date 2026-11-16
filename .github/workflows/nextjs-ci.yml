@@ -1,30 +1,38 @@
-name: Next.js CI
+name: Next Js build with Catching and Artifacts
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  workflow_dispatch:
+ push:
+   branches: [ main]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+ Build:
+  runs-on: ubuntu latest
+  
+  steps:
+  - name: Checkout Repository
+    uses: actions/checkout@v6.1.0
+    
+  - name: Setup Node.js environment
+    uses: actions/setup-node@v7.1.0
+    with:
+     node-version: 24.x
+     cache: "npm"
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  - name: install dependencies
+    run: npm install
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+  - name: Build Next Js app 
+    run: npm run build
 
-      - name: Install dependencies
-        run: npm install
+  - name: Upload a Build Artifact
+    uses: actions/upload-artifact@v7.0.2
+    with:
+      name: NextJs-build
+      path: out/
 
-      - name: Lint
-        run: npm run lint
+    
+    
+    
+ 
 
-      - name: Build
-        run: npm run build
+  
